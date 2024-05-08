@@ -11,7 +11,6 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
       }
       updateMessage(changesMessage);
       break;
-      case 
     // Add cases for other types of messages you might send
   }
 });

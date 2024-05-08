@@ -1,0 +1,37 @@
+{
+
+    "description": "Roteiro 3 Techacker",
+    "manifest_version": 2,
+    "name": "CustomBrowserExtension",
+    "version": "1.0",
+    "homepage_url": "https://github.com/PedroBittarBarao/CustomBrowserExtension",
+    
+  
+    "permissions": [
+      "webRequest",
+      "webRequestBlocking",
+      "*://*/*",
+      "storage",
+      "cookies"
+    ],
+    "background": {
+      "scripts": ["background.js"],
+      "persistent": false
+    },
+  
+
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ],
+  
+    "browser_action": {
+      "default_icon": "icon.png",
+      "default_title": "Third Party Detector",
+      "default_popup": "popup/popup.html"
+    }
+  
+  }
+  

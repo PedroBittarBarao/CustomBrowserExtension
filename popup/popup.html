@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+</style>
+<script src="popup.js"></script>
+
 <head>
-  <title>Third Party Detector</title>
+  <title>Custom Browser Extension</title>
 </head>
+
 <body>
-  <h1>Third Party Detector</h1>
-  <p id="message"></p>
-  <p id="info"></p>
-  <script src="popup.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.5;
-      margin: 20px;
-    }
-    h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-    p {
-      margin-bottom: 10px;
-    }
-    </style>
+  <h1>Custom Browser Extension</h1>
+  <p id="message">Third Party: </p>
+  <p id="cookies">cookies</p>
+  <p >Storage</p>
+  <p id="localStorageData">No storage</p>
+ 
+
 </body>
+
 </html>

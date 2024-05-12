@@ -1,15 +1,19 @@
+console.log("Popup script running");
+
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log("Popup script received a message")
+  console.log(message.type)
   switch (message.type) {
     case "thirdPartyConnection":
       updateMessage(`Third-party connection detected: ${message.url}`);
       break;
-    case "localStorageChanged":
+    case "getLocalStorage":
       // Display the changes to the user
-      let changesMessage = "Local storage changed:\n";
-      for (let key in message.changes) {
-        changesMessage += `${key}: ${JSON.stringify(message.changes[key])}\n`;
-      }
-      updateMessage(changesMessage);
+      updateStorage(message.data);
+      break;
+    case "getCookies":
+      // Display the changes to the user
+      updateCookies(message.data);
       break;
     // Add cases for other types of messages you might send
   }
@@ -19,19 +23,21 @@ function updateMessage(message) {
   document.getElementById('message').textContent = message;
 }
 
+function updateStorage(storage) {
+  document.getElementById('localStorageData').textContent = storage;
+}
+
+function updateCookies(cookies) {
+  document.getElementById('cookies').textContent = "Cookies: " + cookies;
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
-  const infoElement = document.getElementById("info");
-  browser.cookies.getAll({}).then((cookies) => {
-    infoElement.textContent = `Number of cookies: ${cookies.length}`;
-  })
-
-})
-
-browser.storage.onChanged.addListener((changes, areaName) => {
-  if (areaName === "local") {
-    console.log("Local storage changed");
-    // Send a message to the popup script with the changes
-    browser.runtime.sendMessage({ type: "localStorageChanged", changes: changes });
-  }
+  browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    var activeTab = tabs[0];
+    browser.tabs.sendMessage(activeTab.id, {type: "fetchLocalStorage"});
+    browser.tabs.sendMessage(activeTab.id, {type: "fetchCookies"});
+    });
+  
+  const infoElement = document.getElementById("cookies");
 });

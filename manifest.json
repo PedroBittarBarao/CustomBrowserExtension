@@ -10,9 +10,12 @@
     "permissions": [
       "webRequest",
       "webRequestBlocking",
-      "*://*/*",
+      "cookies",
+      "activeTab",
+      "tabs",
       "storage",
-      "cookies"
+      "<all_urls>",
+      "*://*/*" 
     ],
     "background": {
       "scripts": ["background.js"],

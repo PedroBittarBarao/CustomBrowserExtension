@@ -9,10 +9,3 @@ browser.webRequest.onBeforeRequest.addListener(
   { urls: ["<all_urls>"] },
   ["blocking"]
 );
-
-browser.storage.onChanged.addListener((changes, areaName) => {
-  if (areaName === "local") {
-    console.log("Local storage changed");
-    browser.runtime.sendMessage({ type: "localStorageChanged", changes: changes });
-  }
-});

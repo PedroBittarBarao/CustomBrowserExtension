@@ -20,7 +20,7 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 function updateMessage(message) {
-  document.getElementById('message').textContent = message;
+  document.getElementById('message').textContent += message;
 }
 
 function updateStorage(storage) {

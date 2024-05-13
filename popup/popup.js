@@ -15,6 +15,9 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
       // Display the changes to the user
       updateCookies(message.data);
       break;
+    case "redirecionamentoDetectado":
+      updateRedirect(message.url);
+      break;
     // Add cases for other types of messages you might send
   }
 });
@@ -29,6 +32,10 @@ function updateStorage(storage) {
 
 function updateCookies(cookies) {
   document.getElementById('cookies').textContent = "Cookies: " + cookies;
+}
+
+function updateRedirect(redirect) {
+  document.getElementById('redirect').textContent = "Redirect: " + redirect;
 }
 
 
